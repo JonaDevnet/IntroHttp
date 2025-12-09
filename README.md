@@ -84,3 +84,7 @@ Ve a la pestaña **Headers** y agrega uno personalizado para ver cómo el códig
 
 ---
 *🎓 Ejercicio de clase sobre estructura HTTP.*
+
+# 🌐 Ademas incluiremos, Tipos de respuestas especificas, ActionResult, IActionResutl
+
+## 🛠️ En constriccion
