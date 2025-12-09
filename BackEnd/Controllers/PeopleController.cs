@@ -8,12 +8,19 @@ namespace BackEnd.Controllers
     public class PeopleController : ControllerBase
     {
         [HttpGet("all")]
-        public List<People> GetPeople() => Repository.peoples;
+        public List<People> GetPeople() => Repository.people;
+
+        [HttpGet("{id}")]                 // First func de orden superior recibe una funcion  
+        public People Get(int id) => Repository.people.First(p => p.Id == id);
+
+        [HttpGet("search/{search}")]
+        public List<People> Get(string search) => // prog declarativa
+            Repository.people.Where(p => p.Name.ToUpper().Contains(search.ToUpper())).ToList();
     }
 
-    public class Repository
+    public class Repository // Simulacion de base de datos que contiene retorno una lista
     {
-        public static List<People> peoples = new List<People>()
+        public static List<People> people = new List<People>()
         {
             new People()
             {
