@@ -11,7 +11,20 @@ namespace BackEnd.Controllers
         public List<People> GetPeople() => Repository.people;
 
         [HttpGet("{id}")]                 // First func de orden superior recibe una funcion  
-        public People Get(int id) => Repository.people.First(p => p.Id == id);
+        // ActionResult nos permite retornar la exepcion adecuada
+        public ActionResult<People> Get(int id) 
+
+            // Obtenemos el recurso
+            { var people = Repository.people.FirstOrDefault(p => p.Id == id); 
+            
+            if (people == null)
+            {
+                return NotFound(); // Retornamos 404
+            }
+
+            return Ok(people); // Retornamos 200 con el recurso
+        }
+            
 
         [HttpGet("search/{search}")]
         public List<People> Get(string search) => // prog declarativa
