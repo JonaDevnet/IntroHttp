@@ -29,6 +29,19 @@ namespace BackEnd.Controllers
         [HttpGet("search/{search}")]
         public List<People> Get(string search) => // prog declarativa
             Repository.people.Where(p => p.Name.ToUpper().Contains(search.ToUpper())).ToList();
+
+        [HttpPost("add")]
+        public IActionResult Add(People people)
+        {
+            if (string.IsNullOrEmpty(people.Name))
+            {
+                return BadRequest(); // Retornamos 400 
+            }
+
+            Repository.people.Add(people);
+
+            return NoContent(); // Retornamos 204, ok pero sin contenido
+        }
     }
 
     public class Repository // Simulacion de base de datos que contiene retorno una lista
