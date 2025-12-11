@@ -5,8 +5,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 //asi inyectamos la interfaz y la clase que la implementa para poder
 //usarla en los controladores
-builder.Services.AddSingleton<IPeopleServices, People2Services>();
+//builder.Services.AddSingleton<IPeopleServices, People2Services>();
 
+// Ejemplo de inyeccion de dependencias con llave
+builder.Services.AddKeyedSingleton<IPeopleServices, PeopleServices>("peopleService");
+builder.Services.AddKeyedSingleton<IPeopleServices, People2Services>("people2Service");
 
 
 builder.Services.AddControllers();

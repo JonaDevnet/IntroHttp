@@ -10,7 +10,8 @@ namespace BackEnd.Controllers
     {
         private IPeopleServices _peopleServices;
 
-        public PeopleController(IPeopleServices peopleServices)
+        // Inyeccion de dependencias con llave
+        public PeopleController([FromKeyedServices("people2Service")]IPeopleServices peopleServices)
         {
             _peopleServices = peopleServices;
         }
@@ -20,7 +21,7 @@ namespace BackEnd.Controllers
         [HttpGet("all")]
         public List<People> GetPeople() => Repository.people;
 
-        [HttpGet("{id}")]                 // First func de orden superior recibe una funcion  
+        [HttpGet("{Id}")]                 // First func de orden superior recibe una funcion  
         // ActionResult nos permite retornar la exepcion adecuada
         public ActionResult<People> Get(int id) 
 
