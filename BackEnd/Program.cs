@@ -11,6 +11,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddKeyedSingleton<IPeopleServices, PeopleServices>("peopleService");
 builder.Services.AddKeyedSingleton<IPeopleServices, People2Services>("people2Service");
 
+// Ejemplo de inyeccion de dependencias con diferentes tiempos de vida
+builder.Services.AddKeyedSingleton<IRandomService, RandonService>("randomSigleton");
+builder.Services.AddKeyedScoped<IRandomService, RandonService>("randomScoped");
+builder.Services.AddKeyedTransient<IRandomService, RandonService>("randomTransient");
+
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
