@@ -10,9 +10,9 @@ namespace BackEnd.Controllers
     {
         private IPeopleServices _peopleServices;
 
-        public PeopleController()
+        public PeopleController(IPeopleServices peopleServices)
         {
-            _peopleServices = new PeopleServices();
+            _peopleServices = peopleServices;
         }
 
 
