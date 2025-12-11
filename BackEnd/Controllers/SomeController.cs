@@ -33,6 +33,25 @@ namespace BackEnd.Controllers
             TimeSpan tiempoTotal = stopwatch.Elapsed;
             Console.WriteLine($"Tardo: {tiempoTotal.TotalSeconds} s");
 
+            return Ok();
+        }
+
+        [HttpGet("async")]
+        public async Task<IActionResult> GetAsync()
+        {
+            var task1 = new Task(() =>
+            {
+                Thread.Sleep(1000);
+                Console.WriteLine("Conexion a BD terminada");
+            });
+
+            task1.Start();
+
+            Console.WriteLine("Haciendo otra cosa");
+
+            await task1;
+
+            Console.WriteLine("Todo ha terminado");
 
             return Ok();
         }
